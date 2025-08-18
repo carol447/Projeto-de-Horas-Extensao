@@ -41,3 +41,14 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 ### Alterado
 
 ### Corrigido
+
+---
+
+## [0.2.0] - 2025-08-18
+
+### Adicionado
+- FINANCE-0002 **MAJOR** Adicionada a versão inicial do gráfico de gantt
+
+### Alterado
+
+### Corrigido
