@@ -35,8 +35,8 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ### Adicionado
 - FINANCE-0001 **MAJOR** Inicialização do projeto Gerenciador Financeiro Pessoal
-- FINANCE-0002 **MAJOR** Criação da estrutura de diretórios (Analise, Codigo, Gerencia, SQA)
-- FINANCE-0003 **MINOR** Adição de arquivos placeholder para manter a estrutura de diretórios
+- FINANCE-0001 **MAJOR** Criação da estrutura de diretórios (Analise, Codigo, Gerencia, SQA)
+- FINANCE-0001 **MINOR** Adição de arquivos placeholder para manter a estrutura de diretórios
 
 ### Alterado
 
