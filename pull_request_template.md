@@ -1,8 +1,8 @@
 ## [CÓDIGO-DA-TASK] Nome da Task
 
 ### Descrição
-Descreva aqui o que foi implementado, ajustado ou corrigido neste PR.  
-Inclua detalhes relevantes para facilitar a revisão (motivo da alteração, impacto esperado, módulos afetados, etc).  
+<!-- Descreva aqui o que foi implementado, ajustado ou corrigido neste PR.
+Inclua detalhes relevantes para facilitar a revisão (motivo da alteração, impacto esperado, módulos afetados, etc). -->
 
 ---
 
@@ -14,6 +14,7 @@ Inclua detalhes relevantes para facilitar a revisão (motivo da alteração, imp
 ---
 
 ### Passos para testar
-1. Descreva como reproduzir o problema (se houver).  
-2. Informe os passos para validar a correção/implementação.  
-3. Liste dados ou cenários de teste.  
+<!-- Liste aqui o que o revisor precisa fazer para validar este PR:
+1. Como reproduzir o problema (se houver).  
+2. Passos para validar a correção/implementação.  
+3. Dados ou cenários de teste necessários. -->
