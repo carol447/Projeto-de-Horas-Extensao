@@ -65,3 +65,14 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ### Corrigido
 - FIN-0002 **MINOR** Gantt para o padrão do Jira
+
+---
+
+## [0.4.0] - 25-08-2025
+
+### Adicionado
+ - FIN-04 **MAJOR** Adicionado Documento de Requisitos V1
+
+### Alterado
+
+### Corrigido
