@@ -87,3 +87,12 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 ### Alterado
 
 ### Corrigido
+
+## [0.6.0] - 30-08-2025
+
+### Adicionado
+ - HDE-09 **MAJOR** Adicionado versão refatorada do documento de requisitos (V2)
+
+### Alterado
+
+### Corrigido
