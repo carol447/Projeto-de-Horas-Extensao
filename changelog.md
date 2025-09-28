@@ -116,3 +116,14 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 ### Alterado
 
 ### Corrigido
+
+---
+
+## [0.9.0] - 28-09-2025
+
+### Adicionado
+ - HDE-20 **MINOR** Adicionado documento de casos de uso expandido refatorado
+
+### Alterado
+
+### Corrigido
