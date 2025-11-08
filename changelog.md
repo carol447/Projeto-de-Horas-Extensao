@@ -154,13 +154,22 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ---
 
+## [0.10.2] - 04-11-2025
+
+### Adicionado
+
+ - HDE-19 **PATCH** Adicionado artefatos de gerência
+
+### Alterado
+
+---
+
 ## [0.11.0] - 08-11-2025
 
 ### Adicionado
 
  - HDE-28 **MINOR** Adicionado Diagrama de Classes
 
-### Alterado
 
 ### Corrigido
 
