@@ -163,3 +163,15 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 ### Alterado
 
 ### Corrigido
+
+---
+
+## [0.11.1] - 08-11-2025
+
+### Adicionado
+
+ - HDE-28 **PATCH** Adicionado pequena correção do doc de casos de uso expandido no UC-20
+
+### Alterado
+
+### Corrigido
