@@ -184,3 +184,15 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 ### Alterado
 
 ### Corrigido
+
+---
+
+## [0.12.0] - 12-11-2025
+
+### Adicionado
+
+ - HDE-36 **PATCH** Adicionado Diagramas de Sequencia para os casos de uso 2 e 3
+
+### Alterado
+
+### Corrigido
