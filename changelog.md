@@ -196,3 +196,15 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 ### Alterado
 
 ### Corrigido
+
+---
+
+## [1.1.0] - 14-11-2025
+
+### Adicionado
+
+ - HDE-36 **MINOR** Adicionado Diagramas de Comunicação para os casos de uso 2 e 3
+
+### Alterado
+
+### Corrigido
