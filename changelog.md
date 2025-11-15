@@ -191,8 +191,23 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ### Adicionado
 
- - HDE-36 **MAJOR** Adicionado Diagramas de Comunicação para o caso de uso 1
+ - HDE-32 **MAJOR** Adicionado Diagramas de Comunicação para o caso de uso 1
 
 ### Alterado
+
+### Corrigido
+
+---
+
+## [1.1.0] - 14-11-2025
+
+### Adicionado
+
+ - HDE-37 **MINOR** Adicionado Diagramas de Comunicação para os casos de uso 2 e 3
+
+### Alterado
+
+- HDE-36 **PATCH** Texto da resposta do Diagrama de Sequência Registrar Professor: Preenche dados
+- HDE-36 **PATCH** Resposta do Diagrama de Sequência Autenticar Professor, mensagem do autenticarProf. Alterado de profEncontrado para profAutenticado
 
 ### Corrigido
