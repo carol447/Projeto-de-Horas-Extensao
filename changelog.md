@@ -211,3 +211,17 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 - HDE-36 **PATCH** Resposta do Diagrama de Sequência Autenticar Professor, mensagem do autenticarProf. Alterado de profEncontrado para profAutenticado
 
 ### Corrigido
+
+---
+
+## [1.2.0] - 15-11-2025
+
+### Adicionado
+
+ - HDE-40 **MINOR** Adicionado Diagramas de Sequência para os casos de uso 4 e 5
+
+### Alterado
+
+- HDE-28 **PATCH** Adicionado os métodos encontrarAlunoPorCpf e encontrarAlunoPorRa na classe CatalogoAluno, do Diagrama de Classe
+
+### Corrigido
