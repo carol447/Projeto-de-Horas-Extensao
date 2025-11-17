@@ -225,3 +225,17 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 - HDE-28 **PATCH** Adicionado os métodos encontrarAlunoPorCpf e encontrarAlunoPorRa na classe CatalogoAluno, do Diagrama de Classe
 
 ### Corrigido
+
+---
+
+## [1.3.0] - 15-11-2025
+
+### Adicionado
+
+ - HDE-41 **MINOR** Adicionado Diagramas de Colaboração para os casos de uso 4 e 5
+
+### Alterado
+
+- HDE-28 **PATCH** Tipo do parâmetro cpf no método encontrarAlunoPorCpf, de int para String.
+
+### Corrigido
