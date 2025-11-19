@@ -239,3 +239,17 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 - HDE-28 **PATCH** Tipo do parâmetro cpf no método encontrarAlunoPorCpf, de int para String.
 
 ### Corrigido
+
+---
+
+## [1.4.0] - 18-11-2025
+
+### Adicionado
+
+ - HDE-43 **MINOR** Adicionado desenvolvimento dos casos de uso 1 ao 5
+
+### Alterado
+
+### Corrigido
+
+---
