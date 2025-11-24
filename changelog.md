@@ -246,7 +246,7 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ### Adicionado
 
- - HDE-44 **MINOR** Adicionado Diagramas de Sequencia para os casos de uso 6
+ - HDE-44 **MINOR** Adicionado Diagramas de Sequencia para os casos de uso 6, 7
 
 ### Alterado
 
