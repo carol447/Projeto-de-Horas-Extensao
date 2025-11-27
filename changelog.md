@@ -242,7 +242,19 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ---
 
-## [1.4.0] - 24-11-2025
+## [1.4.0] - 18-11-2025
+
+### Adicionado
+
+ - HDE-43 **MINOR** Adicionado desenvolvimento dos casos de uso 1 ao 5
+
+### Alterado
+
+### Corrigido
+
+---
+
+## [1.5.0] - 24-11-2025
 
 ### Adicionado
 
@@ -256,7 +268,7 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ---
 
-## [1.5.0] - 26-11-2025
+## [1.6.0] - 26-11-2025
 
 ### Adicionado
 
@@ -267,3 +279,4 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 - HDE-44 **PATCH** Novos métodos na classe ControladorPAEG
 
 ### Corrigido
+
