@@ -272,11 +272,24 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ### Adicionado
 
- - HDE-44 **MINOR** Adicionado Diagramas de Sequencia e Colaboração para os casos de uso 9, 10 e 11
+ - HDE-44 e HDE-45 **MINOR** Adicionado Diagramas de Sequencia e Colaboração para os casos de uso 9, 10 e 11
 
 ### Alterado
 
-- HDE-44 **PATCH** Novos métodos na classe ControladorPAEG
+- HDE-44 e HDE-45 **PATCH** Novos métodos na classe ControladorPAEG
 
 ### Corrigido
 
+---
+
+## [1.7.0] - 27-11-2025
+
+### Adicionado
+
+ - HDE-49 e HDE-50 **MINOR** Adicionado Diagramas de Sequencia e Colaboração para os casos de uso 12 e 13
+
+### Alterado
+
+- HDE-49 e HDE-50 **PATCH** Novos métodos na classe CatalogoAtividade
+
+### Corrigido
