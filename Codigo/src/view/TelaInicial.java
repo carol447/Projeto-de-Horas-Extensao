@@ -4,8 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import controller.ControladorProfessor;
 import controller.ControladorAluno;
+import controller.ControladorProjeto;
+import controller.ControladorAtividade;
 import repository.CatalogoProfessor;
 import repository.CatalogoAluno;
+import repository.CatalogoProjeto;
 import persistence.GerenciadorPersistencia;
 
 /**
@@ -15,8 +18,11 @@ import persistence.GerenciadorPersistencia;
 public class TelaInicial extends JFrame {
     private CatalogoProfessor catalogoProfessor;
     private CatalogoAluno catalogoAluno;
+    private CatalogoProjeto catalogoProjeto;
     private ControladorProfessor controladorProfessor;
     private ControladorAluno controladorAluno;
+    private ControladorProjeto controladorProjeto;
+    private ControladorAtividade controladorAtividade;
     
     public TelaInicial() {
         // Carregar dados persistidos
@@ -95,18 +101,24 @@ public class TelaInicial extends JFrame {
         try {
             catalogoProfessor = GerenciadorPersistencia.getCatalogoProfessor();
             catalogoAluno = GerenciadorPersistencia.getCatalogoAluno();
+            catalogoProjeto = GerenciadorPersistencia.getCatalogoProjeto();
             controladorProfessor = new ControladorProfessor(catalogoProfessor);
             controladorAluno = new ControladorAluno(catalogoAluno);
+            controladorProjeto = new ControladorProjeto(catalogoProjeto, catalogoProfessor);
+            controladorAtividade = new ControladorAtividade();
         } catch (Exception e) {
             catalogoProfessor = new CatalogoProfessor();
             catalogoAluno = new CatalogoAluno();
+            catalogoProjeto = new CatalogoProjeto();
             controladorProfessor = new ControladorProfessor(catalogoProfessor);
             controladorAluno = new ControladorAluno(catalogoAluno);
+            controladorProjeto = new ControladorProjeto(catalogoProjeto, catalogoProfessor);
+            controladorAtividade = new ControladorAtividade();
         }
     }
     
     private void salvarDados() {
-        GerenciadorPersistencia.salvarDados(catalogoProfessor, catalogoAluno);
+        GerenciadorPersistencia.salvarDados(catalogoProfessor, catalogoAluno, catalogoProjeto);
     }
     
     private void abrirTelaRegistroProfessor() {
@@ -115,7 +127,7 @@ public class TelaInicial extends JFrame {
     }
     
     private void abrirTelaLoginProfessor() {
-        TelaLoginProfessor tela = new TelaLoginProfessor(controladorProfessor);
+        TelaLoginProfessor tela = new TelaLoginProfessor(controladorProfessor, controladorProjeto, controladorAtividade);
         tela.setVisible(true);
     }
     

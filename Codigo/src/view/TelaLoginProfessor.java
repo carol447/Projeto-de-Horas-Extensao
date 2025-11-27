@@ -3,6 +3,8 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 import controller.ControladorProfessor;
+import controller.ControladorProjeto;
+import controller.ControladorAtividade;
 import model.Professor;
 
 /**
@@ -10,11 +12,17 @@ import model.Professor;
  */
 public class TelaLoginProfessor extends JFrame {
     private ControladorProfessor controlador;
+    private ControladorProjeto controladorProjeto;
+    private ControladorAtividade controladorAtividade;
     private JTextField txtEmail;
     private JPasswordField txtSenha;
     
-    public TelaLoginProfessor(ControladorProfessor controlador) {
+    public TelaLoginProfessor(ControladorProfessor controlador, 
+                             ControladorProjeto controladorProjeto,
+                             ControladorAtividade controladorAtividade) {
         this.controlador = controlador;
+        this.controladorProjeto = controladorProjeto;
+        this.controladorAtividade = controladorAtividade;
         
         setTitle("Login Professor");
         setSize(450, 300);
@@ -77,6 +85,14 @@ public class TelaLoginProfessor extends JFrame {
                 JOptionPane.INFORMATION_MESSAGE);
             limparCampos();
             dispose();
+            
+            // Abrir tela de projetos do professor (UC07)
+            TelaMeusProjetos telaProjetos = new TelaMeusProjetos(
+                controladorProjeto, 
+                controladorAtividade, 
+                professor
+            );
+            telaProjetos.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, 
                 "Email ou senha incorretos.", 

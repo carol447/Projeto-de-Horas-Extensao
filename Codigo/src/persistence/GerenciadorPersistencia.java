@@ -2,6 +2,7 @@ package persistence;
 
 import repository.CatalogoProfessor;
 import repository.CatalogoAluno;
+import repository.CatalogoProjeto;
 import java.io.*;
 
 /**
@@ -18,19 +19,21 @@ public class GerenciadorPersistencia {
         private static final long serialVersionUID = 1L;
         CatalogoProfessor catalogoProfessor;
         CatalogoAluno catalogoAluno;
+        CatalogoProjeto catalogoProjeto;
         
-        public DadosSistema(CatalogoProfessor catalogoProfessor, CatalogoAluno catalogoAluno) {
+        public DadosSistema(CatalogoProfessor catalogoProfessor, CatalogoAluno catalogoAluno, CatalogoProjeto catalogoProjeto) {
             this.catalogoProfessor = catalogoProfessor;
             this.catalogoAluno = catalogoAluno;
+            this.catalogoProjeto = catalogoProjeto;
         }
     }
     
     /**
      * Salva os catálogos em arquivo.
      */
-    public static void salvarDados(CatalogoProfessor catalogoProfessor, CatalogoAluno catalogoAluno) {
+    public static void salvarDados(CatalogoProfessor catalogoProfessor, CatalogoAluno catalogoAluno, CatalogoProjeto catalogoProjeto) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(ARQUIVO_DADOS))) {
-            DadosSistema dados = new DadosSistema(catalogoProfessor, catalogoAluno);
+            DadosSistema dados = new DadosSistema(catalogoProfessor, catalogoAluno, catalogoProjeto);
             oos.writeObject(dados);
             System.out.println("Dados salvos com sucesso.");
         } catch (IOException e) {
@@ -48,7 +51,7 @@ public class GerenciadorPersistencia {
         
         if (!arquivo.exists()) {
             System.out.println("Arquivo de dados não encontrado. Criando novos catálogos.");
-            return new DadosSistema(new CatalogoProfessor(), new CatalogoAluno());
+            return new DadosSistema(new CatalogoProfessor(), new CatalogoAluno(), new CatalogoProjeto());
         }
         
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ARQUIVO_DADOS))) {
@@ -58,7 +61,7 @@ public class GerenciadorPersistencia {
         } catch (IOException | ClassNotFoundException e) {
             System.err.println("Erro ao carregar dados: " + e.getMessage());
             e.printStackTrace();
-            return new DadosSistema(new CatalogoProfessor(), new CatalogoAluno());
+            return new DadosSistema(new CatalogoProfessor(), new CatalogoAluno(), new CatalogoProjeto());
         }
     }
     
@@ -74,5 +77,12 @@ public class GerenciadorPersistencia {
      */
     public static CatalogoAluno getCatalogoAluno() {
         return carregarDados().catalogoAluno;
+    }
+
+    /**
+     * Retorna o catálogo de projetos carregado.
+     */
+    public static CatalogoProjeto getCatalogoProjeto() {
+        return carregarDados().catalogoProjeto;
     }
 }
