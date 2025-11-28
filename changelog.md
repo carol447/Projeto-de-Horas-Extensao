@@ -253,3 +253,30 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 ### Corrigido
 
 ---
+
+## [1.5.0] - 24-11-2025
+
+### Adicionado
+
+ - HDE-44 **MINOR** Adicionado Diagramas de Sequencia e Colaboração para os casos de uso 6, 7 e 8
+
+### Alterado
+
+- HDE-44 **PATCH** Novos métodos na classe Projeto e ControladorProjeto
+
+### Corrigido
+
+---
+
+## [1.6.0] - 26-11-2025
+
+### Adicionado
+
+ - HDE-44 **MINOR** Adicionado Diagramas de Sequencia e Colaboração para os casos de uso 9, 10 e 11
+
+### Alterado
+
+- HDE-44 **PATCH** Novos métodos na classe ControladorPAEG
+
+### Corrigido
+
