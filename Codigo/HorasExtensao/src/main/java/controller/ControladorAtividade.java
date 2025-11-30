@@ -13,8 +13,8 @@ public class ControladorAtividade {
     private final ControladorProjeto controladorProjeto;
 
     public ControladorAtividade(CatalogoAtividade catalogoAtividade,
-                                CatalogoProjeto catalogoProjeto,
-                                ControladorProjeto controladorProjeto) {
+            CatalogoProjeto catalogoProjeto,
+            ControladorProjeto controladorProjeto) {
         this.catalogoAtividade = catalogoAtividade;
         this.catalogoProjeto = catalogoProjeto;
         this.controladorProjeto = controladorProjeto;
@@ -38,17 +38,27 @@ public class ControladorAtividade {
         return true;
     }
 
-    public void excluirAtividade(Atividade atividade, Professor professor) {
-
-        // Somente membros do projeto podem excluir
+    public boolean excluirAtividade(Atividade atividade, Professor professor) {
         Projeto projeto = atividade.getProjeto();
 
-        if (controladorProjeto.verificarProfessorMembro(professor, projeto)) {
-            catalogoAtividade.excluir(atividade);
-            projeto.getAtividades().remove(atividade);
+        // 1. Somente professor membro pode excluir
+        if (!controladorProjeto.verificarProfessorMembro(professor, projeto)) {
+            return false;
         }
-    }
 
+        // 2. Verificar se existe PAEG vinculado
+        if (!atividade.getPaegs().isEmpty()) {
+            return false; // Fluxo alternativo: possui PAEGs → não pode excluir
+        }
+
+        // 3. Remover do catálogo de atividades
+        catalogoAtividade.excluir(atividade);
+
+        // 4. Remover a atividade do projeto
+        projeto.getAtividades().remove(atividade);
+
+        return true;
+    }
 
     private boolean validarDados(String nome, String descricao) {
 

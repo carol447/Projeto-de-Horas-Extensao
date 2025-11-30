@@ -5,6 +5,8 @@ import repository.*;
 import catalog.*;
 import java.util.ArrayList;
 import java.util.List;
+import model.Candidatura;
+import model.PAEG;
 import model.Professor;
 import model.Projeto;
 
@@ -85,6 +87,25 @@ public class Sistema {
             }
         }
         ajustarProfessoresDosProjetos();
+
+        for (Candidatura c : catalogoCandidatura.getCandidaturas()) {
+            PAEG paeg = c.getPaeg();
+
+            // procurar o PAEG correto no catálogo
+            for (PAEG real : catalogoPAEG.getPaegs()) {
+
+                boolean mesmoPAEG
+                        = real.getNome().equals(paeg.getNome())
+                        && real.getAtividade().getNome().equals(paeg.getAtividade().getNome())
+                        && real.getAtividade().getProjeto().getNome().equals(paeg.getAtividade().getProjeto().getNome())
+                        && real.getAtividade().getProjeto().getCriador().getCpf().equals(paeg.getAtividade().getProjeto().getCriador().getCpf());
+
+                if (mesmoPAEG) {
+                    // colocar candidatura dentro do objeto REAL do PAEG
+                    real.getCandidaturas().add(c);
+                }
+            }
+        }
     }
 
     public static void salvarDados() {
@@ -96,26 +117,26 @@ public class Sistema {
         repoCandidatura.salvar(catalogoCandidatura.getCandidaturas());
         repoNotificacao.salvar(catalogoNotificacao.getNotificacoes());
     }
-    
+
     private static void ajustarProfessoresDosProjetos() {
 
-    List<Professor> todos = catalogoProfessor.getProfessores();
+        List<Professor> todos = catalogoProfessor.getProfessores();
 
-    for (Projeto p : catalogoProjeto.getProjetos()) {
+        for (Projeto p : catalogoProjeto.getProjetos()) {
 
-        List<Professor> novaLista = new ArrayList<>();
+            List<Professor> novaLista = new ArrayList<>();
 
-        for (Professor antigo : p.getProfessores()) {
-            for (Professor real : todos) {
+            for (Professor antigo : p.getProfessores()) {
+                for (Professor real : todos) {
 
-                if (real.getCpf().equals(antigo.getCpf())) {
-                    novaLista.add(real);
+                    if (real.getCpf().equals(antigo.getCpf())) {
+                        novaLista.add(real);
+                    }
                 }
             }
-        }
 
-        p.setProfessores(novaLista);
+            p.setProfessores(novaLista);
+        }
     }
-}
 
 }

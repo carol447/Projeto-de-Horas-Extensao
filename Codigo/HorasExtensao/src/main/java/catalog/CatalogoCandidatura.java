@@ -8,7 +8,7 @@ import model.PAEG;
 
 public class CatalogoCandidatura {
 
-    private  List<Candidatura> candidaturas;
+    private List<Candidatura> candidaturas;
 
     public CatalogoCandidatura() {
         this.candidaturas = new ArrayList<>();
@@ -21,10 +21,19 @@ public class CatalogoCandidatura {
         List<Candidatura> resultado = new ArrayList<>();
 
         for (Candidatura c : candidaturas) {
-            if (c.getPaeg().equals(paeg) && c.isPendente()) {
+            PAEG p = c.getPaeg();
+
+            boolean mesmoPAEG
+                    = p.getNome().equalsIgnoreCase(paeg.getNome())
+                    && p.getAtividade().getNome().equalsIgnoreCase(paeg.getAtividade().getNome())
+                    && p.getAtividade().getProjeto().getNome().equalsIgnoreCase(paeg.getAtividade().getProjeto().getNome())
+                    && p.getAtividade().getProjeto().getCriador().getCpf().equals(paeg.getAtividade().getProjeto().getCriador().getCpf());
+
+            if (mesmoPAEG && c.isPendente()) {
                 resultado.add(c);
             }
         }
+
         return resultado;
     }
 
@@ -95,7 +104,7 @@ public class CatalogoCandidatura {
         List<Candidatura> resultado = new ArrayList<>();
 
         for (Candidatura c : candidaturas) {
-            if (c.getAluno().equals(aluno)) {
+            if (c.getAluno().getCpf().equals(aluno.getCpf())) {
                 resultado.add(c);
             }
         }
@@ -114,7 +123,28 @@ public class CatalogoCandidatura {
     }
 
     public void setCandidaturas(List<Candidatura> candidaturas) {
-       this.candidaturas = candidaturas;
+        this.candidaturas = candidaturas;
     }
-    
+
+    public List<Candidatura> buscarAprovadosPorPAEG(PAEG paeg) {
+        List<Candidatura> resultado = new ArrayList<>();
+
+        for (Candidatura c : candidaturas) {
+            PAEG p = c.getPaeg();
+
+            boolean mesmoPAEG
+                    = p.getNome().equalsIgnoreCase(paeg.getNome())
+                    && p.getAtividade().getNome().equalsIgnoreCase(paeg.getAtividade().getNome())
+                    && p.getAtividade().getProjeto().getNome().equalsIgnoreCase(paeg.getAtividade().getProjeto().getNome())
+                    && p.getAtividade().getProjeto().getCriador().getCpf()
+                            .equals(paeg.getAtividade().getProjeto().getCriador().getCpf());
+
+            if (mesmoPAEG && c.isAprovada()) {
+                resultado.add(c);
+            }
+        }
+
+        return resultado;
+    }
+
 }

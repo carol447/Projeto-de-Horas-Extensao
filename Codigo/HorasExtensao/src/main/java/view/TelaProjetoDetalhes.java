@@ -10,39 +10,35 @@ public class TelaProjetoDetalhes extends JFrame {
     public TelaProjetoDetalhes(Professor prof, Projeto projeto) {
 
         setTitle("Projeto: " + projeto.getNome());
-        setSize(400, 350);
+        setSize(500, 400);
         setLocationRelativeTo(null);
-        setLayout(new GridLayout(5, 1, 10, 10));
+        setLayout(new BorderLayout());
 
-        JLabel lblTitulo = new JLabel("Projeto: " + projeto.getNome(), SwingConstants.CENTER);
+        JTextArea info = new JTextArea();
+        info.setEditable(false);
+        info.append("Nome do Projeto: " + projeto.getNome() + "\n");
+        info.append("Curso: " + projeto.getCurso() + "\n");
+        info.append("Descrição: " + projeto.getDescricao() + "\n\n");
+
+        info.append("Professores envolvidos:\n");
+        for (Professor p : projeto.getProfessores()) {
+            info.append(" - " + p.getNome() + " (" + p.getEmail() + ")\n");
+        }
+
+        add(new JScrollPane(info), BorderLayout.CENTER);
 
         JButton btnAtividades = new JButton("Atividades");
-        JButton btnAdicionarAtividade = new JButton("Adicionar Atividade");
-        JButton btnGerenciarProfessores = new JButton("Gerenciar Professores");
         JButton btnVoltar = new JButton("Voltar");
 
-        add(lblTitulo);
-        add(btnAtividades);
-        add(btnAdicionarAtividade);
-        add(btnGerenciarProfessores);
-        add(btnVoltar);
+        JPanel painel = new JPanel();
+        painel.add(btnAtividades);
+        painel.add(btnVoltar);
 
-        // ABRIR LISTA DE ATIVIDADES
+        add(painel, BorderLayout.SOUTH);
+
         btnAtividades.addActionListener(e -> {
             dispose();
             new TelaListarAtividades(prof, projeto).setVisible(true);
-        });
-
-        // ADICIONAR ATIVIDADE
-        btnAdicionarAtividade.addActionListener(e -> {
-            dispose();
-            new TelaCadastrarAtividade(prof, projeto).setVisible(true);
-        });
-
-        // GERENCIAR PROFESSORES  (CASO DE USO 7)
-        btnGerenciarProfessores.addActionListener(e -> {
-            dispose();
-            new TelaGerenciarProfessores(prof, projeto).setVisible(true);
         });
 
         btnVoltar.addActionListener(e -> {

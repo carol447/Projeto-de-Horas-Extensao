@@ -9,23 +9,24 @@ import java.awt.*;
 import java.util.List;
 
 public class TelaListarProjetos extends JFrame {
-    
-    private Professor professor;
 
     public TelaListarProjetos(Professor prof) {
-        
-        this.professor = prof;
 
         setTitle("Meus Projetos");
         setSize(500, 400);
         setLocationRelativeTo(null);
 
-        List<Projeto> projetos = Sistema.catalogoProjeto.buscarPorMembro(this.professor);
+        List<Projeto> projetos = Sistema.catalogoProjeto.buscarPorMembro(prof);
 
-        DefaultListModel<Projeto> model = new DefaultListModel<>();
-        projetos.forEach(model::addElement);
+        DefaultListModel<String> model = new DefaultListModel<>();
+        for (Projeto p : projetos) {
+            model.addElement(
+                p.getNome() + " | Curso: " + p.getCurso() +
+                " | Professores: " + p.getProfessores().size()
+            );
+        }
 
-        JList<Projeto> lista = new JList<>(model);
+        JList<String> lista = new JList<>(model);
         lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         JButton btnAbrir = new JButton("Abrir Projeto");
@@ -40,11 +41,10 @@ public class TelaListarProjetos extends JFrame {
         add(botoes, BorderLayout.SOUTH);
 
         btnAbrir.addActionListener(e -> {
-            Projeto p = lista.getSelectedValue();
-            if (p == null) {
-                JOptionPane.showMessageDialog(this, "Selecione um projeto.");
-                return;
-            }
+            int index = lista.getSelectedIndex();
+            if (index < 0) return;
+
+            Projeto p = projetos.get(index);
             dispose();
             new TelaProjetoDetalhes(prof, p).setVisible(true);
         });
@@ -55,3 +55,4 @@ public class TelaListarProjetos extends JFrame {
         });
     }
 }
+
