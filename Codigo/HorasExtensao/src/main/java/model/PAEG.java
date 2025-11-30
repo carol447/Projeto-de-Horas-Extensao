@@ -23,9 +23,9 @@ public class PAEG implements Serializable {
     private final List<Candidatura> candidaturas;
 
     public PAEG(String nome, int cargaHoraria, int maximoCandidaturas,
-                Date dataInicialCandidatura, Date dataFinalCandidatura,
-                Date dataInicialExecucao, Date dataFinalExecucao,
-                Atividade atividade) {
+            Date dataInicialCandidatura, Date dataFinalCandidatura,
+            Date dataInicialExecucao, Date dataFinalExecucao,
+            Atividade atividade) {
 
         this.nome = nome;
         this.cargaHoraria = cargaHoraria;
@@ -59,7 +59,7 @@ public class PAEG implements Serializable {
     public String getNome() {
         return nome;
     }
-    
+
     @Override
     public String toString() {
         return nome;
@@ -78,7 +78,7 @@ public class PAEG implements Serializable {
     }
 
     public List<Candidatura> getCandidaturas() {
-        return new ArrayList<>(candidaturas); 
+        return candidaturas;
     }
 
     public void setDataInicialCandidatura(Date dataInicialCandidatura) {
@@ -113,19 +113,16 @@ public class PAEG implements Serializable {
         this.atividade = atividade;
     }
 
-
     public boolean isPeriodoInscricaoEncerrado() {
         Date agora = new Date();
         return agora.after(dataFinalCandidatura);
     }
-
 
     public boolean isPeriodoInscricaoAberto() {
         Date agora = new Date();
         return !agora.before(dataInicialCandidatura)
                 && !agora.after(dataFinalCandidatura);
     }
-
 
     public Candidatura criarCandidatura(Aluno aluno) {
 
@@ -140,10 +137,6 @@ public class PAEG implements Serializable {
             }
         }
 
-        // Max limit
-        if (candidaturas.size() >= maximoCandidaturas) {
-            return null;
-        }
 
         Candidatura nova = new Candidatura(aluno, this);
         candidaturas.add(nova);

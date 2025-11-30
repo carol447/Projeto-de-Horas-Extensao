@@ -1,3 +1,5 @@
+view\TelaAvaliarCandidaturas.class
+view\TelaDetalhesPAEGAluno.class
 view\TelaHomeProfessor.class
 model\PAEG.class
 model\Aluno.class
@@ -14,8 +16,10 @@ repository\RepositorioPAEG.class
 repository\RepositorioCandidatura.class
 repository\RepositorioAluno.class
 view\TelaHomeAluno.class
+view\TelaMinhasCandidaturas.class
 model\Cursos.class
 view\TelaCadastrarAtividade.class
+view\TelaListarPAEGsDisponiveis.class
 view\TelaCadastroProfessor.class
 view\TelaCadastroEscolha.class
 controller\ControladorPAEG.class
@@ -44,6 +48,7 @@ view\TelaListarCandidaturasPAEG.class
 controller\ControladorNotificacao.class
 model\Notificacao.class
 view\TelaPAEGDetalhes.class
+view\TelaRegistrarParticipacao.class
 catalog\CatalogoProfessor.class
 view\TelaCadastrarProjeto.class
 catalog\CatalogoProjeto.class

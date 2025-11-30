@@ -13,7 +13,7 @@ public class Candidatura implements Serializable {
     public Candidatura(Aluno aluno, PAEG paeg) {
         this.aluno = aluno;
         this.paeg = paeg;
-        this.status = StatusCandidatura.PENDENTE; 
+        this.status = StatusCandidatura.PENDENTE;
     }
 
     public StatusCandidatura getStatus() {
@@ -32,13 +32,16 @@ public class Candidatura implements Serializable {
         this.status = status;
     }
 
-
     public boolean isPendente() {
         return status == StatusCandidatura.PENDENTE;
     }
 
-
     public boolean isAprovada() {
         return status == StatusCandidatura.APROVADO;
+    }
+
+    @Override
+    public String toString() {
+        return paeg.getNome() + " - Status: " + status;
     }
 }

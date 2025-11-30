@@ -7,6 +7,7 @@ import java.util.List;
 import catalog.CatalogoAtividade;
 import catalog.CatalogoCandidatura;
 import catalog.CatalogoPAEG;
+import java.util.Calendar;
 import model.PAEG;
 import model.Atividade;
 import model.Professor;
@@ -21,9 +22,9 @@ public class ControladorPAEG {
     private final ControladorProjeto controladorProjeto;
 
     public ControladorPAEG(CatalogoPAEG catalogoPAEG,
-                           CatalogoAtividade catalogoAtividade,
-                           CatalogoCandidatura catalogoCandidatura,
-                           ControladorProjeto controladorProjeto) {
+            CatalogoAtividade catalogoAtividade,
+            CatalogoCandidatura catalogoCandidatura,
+            ControladorProjeto controladorProjeto) {
 
         this.catalogoPAEG = catalogoPAEG;
         this.catalogoAtividade = catalogoAtividade;
@@ -35,13 +36,13 @@ public class ControladorPAEG {
     // criarPAEG
     // ======================================================
     public boolean criarPAEG(Date dataInicialCandidatura, Date dataFinalCandidatura,
-                             Date dataInicialExecucao, Date dataFinalExecucao,
-                             String nome, int cargaHoraria, int maximoCandidaturas,
-                             Atividade atividade) {
+            Date dataInicialExecucao, Date dataFinalExecucao,
+            String nome, int cargaHoraria, int maximoCandidaturas,
+            Atividade atividade) {
 
         if (!validarDados(dataInicialCandidatura, dataFinalCandidatura,
-                          dataInicialExecucao, dataFinalExecucao,
-                          nome, cargaHoraria, maximoCandidaturas)) {
+                dataInicialExecucao, dataFinalExecucao,
+                nome, cargaHoraria, maximoCandidaturas)) {
             return false;
         }
 
@@ -61,23 +62,24 @@ public class ControladorPAEG {
     // ======================================================
     // excluirPAEG
     // ======================================================
-    public void excluirPAEG(PAEG paeg, Professor professor) {
+    public boolean excluirPAEG(PAEG paeg, Professor professor) {
 
         Atividade atividade = paeg.getAtividade();
         Projeto projeto = atividade.getProjeto();
 
         // Somente membro pode excluir
         if (!controladorProjeto.verificarProfessorMembro(professor, projeto)) {
-            return;
+            return false;
         }
 
         // Só pode excluir se não houver candidaturas
         if (!paeg.getCandidaturas().isEmpty()) {
-            return;
+            return false;
         }
 
         catalogoPAEG.excluir(paeg);
         atividade.getPaegs().remove(paeg);
+        return true;
     }
 
     // ======================================================
@@ -98,12 +100,12 @@ public class ControladorPAEG {
 
         for (PAEG paeg : catalogoPAEG.getPaegs()) {
 
-            boolean periodoAberto = !agora.before(paeg.getDataInicialCandidatura()) &&
-                                    !agora.after(paeg.getDataFinalCandidatura());
+            boolean periodoAberto = !agora.before(paeg.getDataInicialCandidatura())
+                    && !agora.after(paeg.getDataFinalCandidatura());
 
             boolean doMesmoCurso = paeg.getAtividade()
-                                       .getProjeto()
-                                       .getCurso() == aluno.getCurso();
+                    .getProjeto()
+                    .getCurso() == aluno.getCurso();
 
             if (periodoAberto && doMesmoCurso) {
                 resultado.add(paeg);
@@ -117,8 +119,8 @@ public class ControladorPAEG {
     // validarDados (private conforme o UML)
     // ======================================================
     private boolean validarDados(Date dataInicialCandidatura, Date dataFinalCandidatura,
-                                 Date dataInicialExecucao, Date dataFinalExecucao,
-                                 String nome, int cargaHoraria, int maximoCandidaturas) {
+            Date dataInicialExecucao, Date dataFinalExecucao,
+            String nome, int cargaHoraria, int maximoCandidaturas) {
 
         if (nome == null || nome.trim().isEmpty()) {
             return false;
@@ -136,8 +138,8 @@ public class ControladorPAEG {
             return false;
         }
 
-        if (dataInicialCandidatura == null || dataFinalCandidatura == null ||
-            dataInicialExecucao == null || dataFinalExecucao == null) {
+        if (dataInicialCandidatura == null || dataFinalCandidatura == null
+                || dataInicialExecucao == null || dataFinalExecucao == null) {
             return false;
         }
 
@@ -156,14 +158,36 @@ public class ControladorPAEG {
         }
 
         // Nenhuma data pode ser anterior ao dia atual
-        Date agora = new Date();
-        if (dataInicialCandidatura.before(agora) ||
-            dataFinalCandidatura.before(agora) ||
-            dataInicialExecucao.before(agora) ||
-            dataFinalExecucao.before(agora)) {
+        Date hoje = inicioDoDia(new Date());
+
+// Início da candidatura pode ser hoje, mas não antes
+        if (dataInicialCandidatura.before(hoje)) {
+            return false;
+        }
+
+// Demais datas não podem ser hoje nem antes (devem ser futuras)
+        if (!dataFinalCandidatura.after(hoje)) {
+            return false;
+        }
+
+        if (!dataInicialExecucao.after(hoje)) {
+            return false;
+        }
+
+        if (!dataFinalExecucao.after(hoje)) {
             return false;
         }
 
         return true;
+    }
+
+    private Date inicioDoDia(Date d) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(d);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        return cal.getTime();
     }
 }
