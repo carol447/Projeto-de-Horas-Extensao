@@ -1,0 +1,16 @@
+package model;
+
+public enum Cursos {
+    COMPUTACAO,
+    ARQUITETURA,
+    MATEMATICA,
+    FISICA,
+    QUIMICA,
+    EDUCACAO_FISICA,
+    PEDAGOGIA,
+    GEOGRAFIA,
+    FISIOTERAPIA,
+    ESTATISTICA,
+    ENG_CARTOGRAFICA,
+    ENG_AMBIENTAL
+}

@@ -5,33 +5,8 @@ Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
 O formato é baseado em [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.2.4] - 15-03-2025 (Exemplo)
 
-Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários devem seguir.  
-
-### Adicionado  
-
-### Alterado  
-- PROJECTNAME-ZZZZ **PATCH** Agora a home é iterativa.  
-
-### Corrigido  
-- PROJECTNAME-TTTT **PATCH** Adicionada lógica ao teaser de runsheet para excluir os cartões de agenda correspondentes.  
-
----
-
-## [1.2.3] - 17-03-2025 (Exemplo)
-
-### Adicionado  
-
-### Alterado  
-
-### Corrigido  
-- PROJECTNAME-UUUU **MINOR** Corrigidos os testes do módulo *foo*.  
-- PROJECTNAME-RRRR **MAJOR** A linha do tempo do módulo *foo* agora utiliza o fuso horário do navegador para resolver datas.
-
----
-
-## [0.1.0] - 18-08-2025
+## [0.1.1] - 18-08-2025
 
 ### Adicionado
 - FIN-0001 **MAJOR** Inicialização do projeto Gerenciador Financeiro Pessoal
@@ -44,7 +19,7 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ---
 
-## [0.2.0] - 18-08-2025
+## [0.1.2] - 18-08-2025
 
 ### Adicionado
 - FIN-0002 **MAJOR** Adicionada a versão inicial do gráfico de gantt
@@ -55,7 +30,7 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ---
 
-## [0.3.0] - 19-08-2025
+## [0.1.3] - 19-08-2025
 
 ### Adicionado
 
@@ -68,7 +43,7 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ---
 
-## [0.4.0] - 25-08-2025
+## [0.1.4] - 25-08-2025
 
 ### Adicionado
  - FIN-04 **MAJOR** Adicionado Documento de Requisitos V1
@@ -79,7 +54,7 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ---
 
-## [0.5.0] - 25-08-2025
+## [0.1.5] - 25-08-2025
 
 ### Adicionado
  - FIN-05 **MAJOR** Adicionado relatório de erros do Documento de Requisitos V1
@@ -88,7 +63,7 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ### Corrigido
 
-## [0.6.0] - 30-08-2025
+## [0.1.6] - 30-08-2025
 
 ### Adicionado
  - HDE-09 **MAJOR** Adicionado versão refatorada do documento de requisitos (V2)
@@ -97,7 +72,7 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ### Corrigido
 
-## [0.7.0] - 30-08-2025
+## [0.1.7] - 30-08-2025
 
 ### Adicionado
  - HDE-11 **MAJOR** Adicionado versão 1 do Documento de Casos de Uso Expandido
@@ -108,7 +83,7 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ---
 
-## [0.8.0] - 28-09-2025
+## [0.1.8] - 28-09-2025
 
 ### Adicionado
  - HDE-17 **MINOR** Adicionado erros do documento de caso de uso expandido
@@ -119,7 +94,7 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ---
 
-## [0.9.0] - 28-09-2025
+## [0.1.9] - 28-09-2025
 
 ### Adicionado
 
@@ -130,7 +105,7 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 ### Corrigido
 ---
 
-## [0.10.0] - 28-09-2025
+## [0.2.0] - 28-09-2025
 
 ### Adicionado
 
@@ -142,7 +117,7 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ---
 
-## [0.10.1] - 28-09-2025
+## [0.2.1] - 28-09-2025
 
 ### Adicionado
 
@@ -154,7 +129,7 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ---
 
-## [0.10.2] - 04-11-2025
+## [0.2.2] - 04-11-2025
 
 ### Adicionado
 
@@ -164,7 +139,7 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ---
 
-## [0.11.0] - 08-11-2025
+## [0.2.3] - 08-11-2025
 
 ### Adicionado
 
@@ -175,7 +150,7 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ---
 
-## [0.11.1] - 08-11-2025
+## [0.2.4] - 08-11-2025
 
 ### Adicionado
 
@@ -187,7 +162,7 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ---
 
-## [1.0.0] - 14-11-2025
+## [0.2.5] - 14-11-2025
 
 ### Adicionado
 
@@ -199,7 +174,7 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ---
 
-## [1.1.0] - 14-11-2025
+## [0.2.6] - 14-11-2025
 
 ### Adicionado
 
@@ -214,7 +189,7 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ---
 
-## [1.2.0] - 15-11-2025
+## [0.2.7] - 15-11-2025
 
 ### Adicionado
 
@@ -228,7 +203,7 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ---
 
-## [1.3.0] - 15-11-2025
+## [0.2.8] - 15-11-2025
 
 ### Adicionado
 
@@ -242,7 +217,7 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 
 ---
 
-## [1.4.0] - 18-11-2025
+## [0.2.9] - 18-11-2025
 
 ### Adicionado
 
@@ -253,30 +228,4 @@ Aqui estariam os passos de atualização para a versão 1.2.4 que os usuários d
 ### Corrigido
 
 ---
-
-## [1.5.0] - 24-11-2025
-
-### Adicionado
-
- - HDE-44 **MINOR** Adicionado Diagramas de Sequencia e Colaboração para os casos de uso 6, 7 e 8
-
-### Alterado
-
-- HDE-44 **PATCH** Novos métodos na classe Projeto e ControladorProjeto
-
-### Corrigido
-
----
-
-## [1.6.0] - 26-11-2025
-
-### Adicionado
-
- - HDE-44 **MINOR** Adicionado Diagramas de Sequencia e Colaboração para os casos de uso 9, 10 e 11
-
-### Alterado
-
-- HDE-44 **PATCH** Novos métodos na classe ControladorPAEG
-
-### Corrigido
 
