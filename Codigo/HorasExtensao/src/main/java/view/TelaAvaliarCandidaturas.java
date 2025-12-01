@@ -18,8 +18,8 @@ public class TelaAvaliarCandidaturas extends JFrame {
         setSize(500, 400);
         setLocationRelativeTo(null);
 
-        List<Candidatura> pendentes =
-                Sistema.catalogoCandidatura.buscarPendentesPorPAEG(paeg);
+        List<Candidatura> pendentes
+                = Sistema.catalogoCandidatura.buscarPendentesPorPAEG(paeg);
 
         DefaultListModel<Candidatura> model = new DefaultListModel<>();
         pendentes.forEach(model::addElement);
@@ -39,7 +39,6 @@ public class TelaAvaliarCandidaturas extends JFrame {
         setLayout(new BorderLayout());
         add(new JScrollPane(lista), BorderLayout.CENTER);
         add(botoes, BorderLayout.SOUTH);
-
 
         // ===========================
         // APROVAR
@@ -87,5 +86,15 @@ public class TelaAvaliarCandidaturas extends JFrame {
             dispose();
             new TelaPAEGDetalhes(prof, paeg.getAtividade(), paeg).setVisible(true);
         });
+
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                util.EncerrarSistema.encerrarAplicacao(TelaAvaliarCandidaturas.this);
     }
 }
+);
+    }
+    }
+

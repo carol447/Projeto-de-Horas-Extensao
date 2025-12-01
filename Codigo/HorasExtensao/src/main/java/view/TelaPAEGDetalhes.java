@@ -10,15 +10,22 @@ import javax.swing.*;
 import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import javax.swing.border.EmptyBorder;
 
 public class TelaPAEGDetalhes extends JFrame {
 
     public TelaPAEGDetalhes(Professor prof, Atividade atividade, PAEG paeg) {
 
         setTitle("Detalhes do PAEG: " + paeg.getNome());
-        setSize(600, 450);
+        setSize(650, 450); 
         setLocationRelativeTo(null);
-        setLayout(new BorderLayout());
+
+        // ===================================
+        // 1. PAINEL RAIZ COM BORDERLAYOUT
+        // ===================================
+        JPanel root = new JPanel(new BorderLayout(10, 10));
+        root.setBorder(new EmptyBorder(15, 15, 15, 15));
+        add(root);
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -27,45 +34,76 @@ public class TelaPAEGDetalhes extends JFrame {
         long pendentes = todas.stream()
                 .filter(c -> c.getPaeg().equals(paeg) && c.isPendente())
                 .count();
-
         long aprovados = todas.stream()
                 .filter(c -> c.getPaeg().equals(paeg) && c.isAprovada())
                 .count();
 
-        // Painel de informações
-        JTextArea info = new JTextArea();
-        info.setEditable(false);
-        info.append("Nome: " + paeg.getNome() + "\n");
-        info.append("Carga Horária: " + paeg.getCargaHoraria() + "h\n");
-        info.append("Máximo de vagas (aprovações): " + paeg.getMaximoCandidaturas() + "\n\n");
+        // ===================================
+        // 2. PAINEL DE INFORMAÇÕES (CENTER) - Usando JLabel/HTML para visual limpo
+        // ===================================
+        JPanel infoPanel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 0, 5, 0);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.weightx = 1.0;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
 
-        info.append("Período de Candidatura:\n");
-        info.append(" - Início: " + sdf.format(paeg.getDataInicialCandidatura()) + "\n");
-        info.append(" - Fim: " + sdf.format(paeg.getDataFinalCandidatura()) + "\n\n");
+        // Formatação das datas
+        String infoText = String.format(
+                "<html>"
+                + "<b>Nome:</b> %s<br/>"
+                + "<b>Carga Horária:</b> %dh<br/>"
+                + "<b>Máximo de vagas (aprovações):</b> %d<hr/>"
+                + "<b>Período de Candidatura:</b><br/>"
+                + "&nbsp;- Início: %s<br/>"
+                + "&nbsp;- Fim: %s<hr/>"
+                + "<b>Execução:</b><br/>"
+                + "&nbsp;- Início: %s<br/>"
+                + "&nbsp;- Fim: %s<hr/>"
+                + "<b>Candidaturas:</b><br/>"
+                + "&nbsp;- Pendentes: <span style='color: orange;'>%d</span><br/>"
+                + "&nbsp;- Aprovadas: <span style='color: green;'>%d</span>"
+                + "</html>",
+                paeg.getNome(), paeg.getCargaHoraria(), paeg.getMaximoCandidaturas(),
+                sdf.format(paeg.getDataInicialCandidatura()), sdf.format(paeg.getDataFinalCandidatura()),
+                sdf.format(paeg.getDataInicialExecucao()), sdf.format(paeg.getDataFinalExecucao()),
+                pendentes, aprovados
+        );
 
-        info.append("Execução:\n");
-        info.append(" - Início: " + sdf.format(paeg.getDataInicialExecucao()) + "\n");
-        info.append(" - Fim: " + sdf.format(paeg.getDataFinalExecucao()) + "\n\n");
+        JLabel lblInfo = new JLabel(infoText);
+        lblInfo.setFont(new Font("Arial", Font.PLAIN, 14));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.BOTH;
+        infoPanel.add(lblInfo, gbc);
 
-        info.append("Candidaturas:\n");
-        info.append(" - Pendentes: " + pendentes + "\n");
-        info.append(" - Aprovadas: " + aprovados + "\n\n");
+        root.add(new JScrollPane(infoPanel), BorderLayout.CENTER);
 
-        add(new JScrollPane(info), BorderLayout.CENTER);
-
-        // BOTÕES
+        // ===================================
+        // 3. BOTÕES (SOUTH) - Quatro botões grandes
+        // ===================================
         JButton btnCandidaturas = new JButton("Avaliar Candidaturas");
         JButton btnRegistrar = new JButton("Registrar Participação");
         JButton btnExcluir = new JButton("Excluir PAEG");
         JButton btnVoltar = new JButton("Voltar");
 
-        JPanel botoes = new JPanel();
+        // Centraliza e adiciona espaçamento aos botões
+        JPanel botoes = new JPanel(new FlowLayout(FlowLayout.CENTER, 8, 5));
+
+        // Botões de 150px de largura
+        Dimension buttonSize = new Dimension(130, 25);
+        btnCandidaturas.setPreferredSize(buttonSize);
+        btnRegistrar.setPreferredSize(buttonSize);
+        btnExcluir.setPreferredSize(buttonSize);
+        btnVoltar.setPreferredSize(buttonSize);
+
         botoes.add(btnCandidaturas);
         botoes.add(btnRegistrar);
         botoes.add(btnExcluir);
-        botoes.add(btnVoltar);
+        botoes.add(btnVoltar); // Posicionado corretamente
 
-        add(botoes, BorderLayout.SOUTH);
+        root.add(botoes, BorderLayout.SOUTH);
 
         // ============================================================
         // ABRIR LISTA DE CANDIDATURAS (UC11)
@@ -115,5 +153,14 @@ public class TelaPAEGDetalhes extends JFrame {
             dispose();
             new TelaAtividadeDetalhes(prof, atividade.getProjeto(), atividade).setVisible(true);
         });
+
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                util.EncerrarSistema.encerrarAplicacao(TelaPAEGDetalhes.this);
+            }
+        }
+        );
     }
 }

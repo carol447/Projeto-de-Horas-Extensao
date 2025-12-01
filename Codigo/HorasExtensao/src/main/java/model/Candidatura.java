@@ -7,8 +7,8 @@ public class Candidatura implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private StatusCandidatura status;
-    private final Aluno aluno;
-    private final PAEG paeg;
+    private Aluno aluno;
+    private PAEG paeg;
 
     public Candidatura(Aluno aluno, PAEG paeg) {
         this.aluno = aluno;
@@ -24,10 +24,21 @@ public class Candidatura implements Serializable {
         return aluno;
     }
 
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+    
+    
+
     public PAEG getPaeg() {
         return paeg;
     }
+    
 
+    public void setPaeg(PAEG paeg){
+        this.paeg = paeg;
+    }
+    
     public void setStatus(StatusCandidatura status) {
         this.status = status;
     }
@@ -42,6 +53,6 @@ public class Candidatura implements Serializable {
 
     @Override
     public String toString() {
-        return paeg.getNome() + " - Status: " + status;
+        return aluno.getNome() + " - Status: " + status;
     }
 }

@@ -50,31 +50,25 @@ public class ControladorCandidatura {
 
         PAEG paeg = candidatura.getPaeg();
 
-        // 1. Só professor membro do projeto pode avaliar
         if (!controladorProjeto.verificarProfessorMembro(professor,
                 paeg.getAtividade().getProjeto())) {
             return false;
         }
 
-        // Se solicitar aprovação → verificar limite
         if (novoStatus == StatusCandidatura.APROVADO) {
             int aprovados = catalogoCandidatura.contarAprovadasPorPAEG(paeg);
             if (aprovados >= paeg.getMaximoCandidaturas()) {
-                return false; // LIMITE ATINGIDO — professor NÃO PODE APROVAR MAIS
+                return false;
             }
         }
 
-        // 2. Só pode avaliar se o período de candidaturas terminou
-        // if (!paeg.isPeriodoInscricaoEncerrado()) {
-        //    return false;
-        //} só para testar
-        // 4. Atualizar estado
-        candidatura.setStatus(novoStatus);
+        if (!paeg.isPeriodoInscricaoEncerrado()) {
+            return false;
+        }
 
-        // CHAMAMOS ATUALIZAR() CONFORME O UML EXIGE
+        candidatura.setStatus(novoStatus);
         catalogoCandidatura.atualizar(candidatura);
 
-        // 5. Notificar aluno
         String msg = "Sua candidatura no PAEG '" + paeg.getNome()
                 + "' foi " + novoStatus.toString().toLowerCase() + ".";
 
@@ -97,16 +91,15 @@ public class ControladorCandidatura {
             return false;
         }
 
-        //Date hoje = new Date();
-        //if (!hoje.after(paeg.getDataFinalExecucao())) {
-        //    return false;
-        //}para testar
+        Date hoje = new Date();
+        if (!hoje.after(paeg.getDataFinalExecucao())) {
+            return false;
+        }
 
         if (!candidatura.isAprovada()) {
             return false;
         }
 
-        // 4. Atualizar estado
         if (presente) {
             candidatura.setStatus(StatusCandidatura.CONCLUIDO);
             candidatura.getAluno().adicionarHorasACC(paeg.getCargaHoraria());
@@ -114,10 +107,8 @@ public class ControladorCandidatura {
             candidatura.setStatus(StatusCandidatura.REPROVADO); // AUSENTE
         }
 
-        // 5. Registrar no catálogo
         catalogoCandidatura.atualizar(candidatura);
 
-        // 6. Notificar aluno
         String mensagem = presente
                 ? "Sua participação no PAEG '" + paeg.getNome() + "' foi concluída com sucesso."
                 : "Você foi marcado como AUSENTE no PAEG '" + paeg.getNome() + "'.";
@@ -136,13 +127,10 @@ public class ControladorCandidatura {
 // candidatar (UC16 — Candidatar-se a PAEG)
 // ======================================================
     public boolean candidatar(PAEG paeg, Aluno aluno) {
-
-        // 1. Verifica se o período está aberto
         if (!paeg.isPeriodoInscricaoAberto()) {
             return false;
         }
 
-        // 2. Verifica duplicação
         try {
             catalogoCandidatura.verificarCandidaturaExistente(paeg, aluno);
         } catch (IllegalStateException e) {
@@ -152,14 +140,10 @@ public class ControladorCandidatura {
         Candidatura nova = paeg.criarCandidatura(aluno);
 
         if (nova == null) {
-            // Já existe ou período fechado ou lotado
             return false;
         }
 
-        // 2. Salvar no catálogo também
         catalogoCandidatura.addCandidatura(nova);
-
-        // 3. Notificação
         catalogoNotificacao.addNotificacao(
                 new Notificacao(aluno, "Candidatura registrada no PAEG: " + paeg.getNome())
         );
@@ -180,7 +164,7 @@ public class ControladorCandidatura {
     public void cancelarCandidatura(Candidatura candidatura) {
 
         if (!candidatura.isPendente()) {
-            return; // Não pode cancelar algo já avaliado
+            return; 
         }
 
         catalogoCandidatura.excluir(candidatura);

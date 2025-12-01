@@ -27,5 +27,14 @@ public class TelaCadastroEscolha extends JFrame {
             dispose();
             new TelaCadastroProfessor().setVisible(true);
         });
+        
+                                setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                util.EncerrarSistema.encerrarAplicacao(TelaCadastroEscolha.this);
+    }
+}
+);
     }
 }

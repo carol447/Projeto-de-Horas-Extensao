@@ -10,19 +10,27 @@ import model.StatusCandidatura;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
+import javax.swing.border.EmptyBorder;
 
 public class TelaListarCandidaturasPAEG extends JFrame {
 
     public TelaListarCandidaturasPAEG(Professor prof, PAEG paeg) {
 
         setTitle("Candidaturas - " + paeg.getNome());
-        setSize(500, 400);
+        setSize(550, 400); // Aumentado um pouco
         setLocationRelativeTo(null);
-        setLayout(new BorderLayout());
+        // setLayout(new BorderLayout()); <— Será usado no root
+
+        // ===================================
+        // 1. PAINEL RAIZ COM BORDERLAYOUT
+        // ===================================
+        JPanel root = new JPanel(new BorderLayout(10, 10));
+        root.setBorder(new EmptyBorder(15, 15, 15, 15));
+        add(root);
 
         // === BUSCAR PENDENTES ===
-        List<Candidatura> candidaturas =
-                Sistema.catalogoCandidatura.buscarPendentesPorPAEG(paeg);
+        List<Candidatura> candidaturas
+                = Sistema.catalogoCandidatura.buscarPendentesPorPAEG(paeg);
 
         DefaultListModel<Candidatura> model = new DefaultListModel<>();
         for (Candidatura c : candidaturas) {
@@ -31,20 +39,31 @@ public class TelaListarCandidaturasPAEG extends JFrame {
 
         JList<Candidatura> lista = new JList<>(model);
         lista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        lista.setFont(new Font("Monospaced", Font.PLAIN, 12)); // Fonte para melhor visualização
 
-        add(new JScrollPane(lista), BorderLayout.CENTER);
+        // Adiciona borda com título
+        JScrollPane scrollPane = new JScrollPane(lista);
+        scrollPane.setBorder(BorderFactory.createTitledBorder("Candidaturas Pendentes para Avaliação"));
+        root.add(scrollPane, BorderLayout.CENTER);
 
         // === BOTÕES ===
         JButton btnAprovar = new JButton("Aprovar");
         JButton btnReprovar = new JButton("Reprovar");
         JButton btnVoltar = new JButton("Voltar");
 
-        JPanel botoes = new JPanel();
+        // Centraliza botões
+        JPanel botoes = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 5));
+
+        Dimension buttonSize = new Dimension(120, 30);
+        btnAprovar.setPreferredSize(buttonSize);
+        btnReprovar.setPreferredSize(buttonSize);
+        btnVoltar.setPreferredSize(buttonSize);
+
         botoes.add(btnAprovar);
         botoes.add(btnReprovar);
         botoes.add(btnVoltar);
 
-        add(botoes, BorderLayout.SOUTH);
+        root.add(botoes, BorderLayout.SOUTH);
 
         ControladorCandidatura cc = Sistema.controladorCandidatura;
 
@@ -59,7 +78,7 @@ public class TelaListarCandidaturasPAEG extends JFrame {
             boolean ok = cc.avaliarCandidatura(selec, prof, StatusCandidatura.APROVADO);
             if (!ok) {
                 JOptionPane.showMessageDialog(this,
-                        "Não é possível aprovar. Limite de vagas atingido ou período não encerrado.");
+                        "Não é possível aprovar. Limite de vagas atingido ou Período de Candidatura não encerrado.");
                 return;
             }
 
@@ -78,7 +97,7 @@ public class TelaListarCandidaturasPAEG extends JFrame {
             boolean ok = cc.avaliarCandidatura(selec, prof, StatusCandidatura.REPROVADO);
             if (!ok) {
                 JOptionPane.showMessageDialog(this,
-                        "Erro ao reprovar. Período não encerrado ou professor não autorizado.");
+                        "Erro ao reprovar. Período de Candidatura não encerrado ou professor não autorizado.");
                 return;
             }
 
@@ -91,5 +110,14 @@ public class TelaListarCandidaturasPAEG extends JFrame {
             dispose();
             new TelaPAEGDetalhes(prof, paeg.getAtividade(), paeg).setVisible(true);
         });
+
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                util.EncerrarSistema.encerrarAplicacao(TelaListarCandidaturasPAEG.this);
+            }
+        }
+        );
     }
 }

@@ -51,7 +51,7 @@ public class CatalogoProfessor {
     
 
     public List<Professor> getProfessores() {
-        return new ArrayList<>(professores);
+        return professores;
     }
 
     public void setProfessores(List<Professor> professores) {

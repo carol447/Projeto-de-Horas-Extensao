@@ -7,6 +7,7 @@ import java.util.List;
 import catalog.CatalogoAtividade;
 import catalog.CatalogoCandidatura;
 import catalog.CatalogoPAEG;
+import com.mycompany.horasextensao.Sistema;
 import java.util.Calendar;
 import model.PAEG;
 import model.Atividade;
@@ -72,13 +73,19 @@ public class ControladorPAEG {
             return false;
         }
 
-        // Só pode excluir se não houver candidaturas
-        if (!paeg.getCandidaturas().isEmpty()) {
+        boolean temCandidaturas = Sistema.catalogoCandidatura.getCandidaturas()
+                .stream()
+                .anyMatch(c -> c.getPaeg().equals(paeg));
+
+        if (temCandidaturas) {
             return false;
         }
+        Sistema.catalogoPAEG.getPaegs().remove(paeg);
 
-        catalogoPAEG.excluir(paeg);
-        atividade.getPaegs().remove(paeg);
+        paeg.getAtividade().getPaegs().remove(paeg);
+
+        Sistema.salvarDados();
+
         return true;
     }
 

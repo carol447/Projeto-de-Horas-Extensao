@@ -54,7 +54,7 @@ public class CatalogoProjeto {
 }
 
     public List<Projeto> getProjetos() {
-        return new ArrayList<>(projetos);
+        return projetos;
     }
 
     public void setProjetos(List<Projeto> projetos) {

@@ -14,7 +14,5 @@ public class HorasExtensao {
         });
 
         Runtime.getRuntime().addShutdownHook(new Thread(Sistema::salvarDados));
-        catalogoProjeto.setProjetos(repoProjeto.carregar());
-        System.out.println("Catalogo tem projetos: " + catalogoProjeto.getProjetos().size());
     }
 }

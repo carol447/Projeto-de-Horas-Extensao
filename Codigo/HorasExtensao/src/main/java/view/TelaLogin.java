@@ -13,28 +13,77 @@ public class TelaLogin extends JFrame {
 
     public TelaLogin() {
         setTitle("Sistema Horas de Extensão - Login");
-        setSize(400, 250);
+        setSize(420, 200);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridLayout(5, 1, 10, 10));
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
-        JLabel lblEmail = new JLabel("E-mail:", SwingConstants.CENTER);
-        JTextField txtEmail = new JTextField();
+        // ============================
+        // Layout principal
+        // ============================
+        JPanel root = new JPanel(new BorderLayout(10, 0));
+        root.setBorder(BorderFactory.createEmptyBorder(5, 15, 5, 15));
+        add(root);
 
-        JLabel lblSenha = new JLabel("Senha:", SwingConstants.CENTER);
-        JPasswordField txtSenha = new JPasswordField();
+        // ============================
+        // Painel do formulário
+        // ============================
+        JPanel form = new JPanel(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.insets = new Insets(5, 5, 5, 5);
+        c.fill = GridBagConstraints.HORIZONTAL;
+
+        JLabel lblEmail = new JLabel("E-mail:");
+        JTextField txtEmail = new JTextField(20);
+
+        JLabel lblSenha = new JLabel("Senha:");
+        JPasswordField txtSenha = new JPasswordField(20);
 
         JButton btnEntrar = new JButton("Entrar");
         JButton btnRegistrar = new JButton("Registrar");
-        JButton btnEncerrar = new JButton("Encerrar Sistema");
 
-        add(lblEmail);
-        add(txtEmail);
-        add(lblSenha);
-        add(txtSenha);
-        add(btnEntrar);
-        add(btnRegistrar);
-        add(btnEncerrar);
+        // Linha 1 — Email
+        c.gridx = 0;
+        c.gridy = 0;
+        c.weightx = 0;
+        form.add(lblEmail, c);
+
+        c.gridx = 1;
+        c.gridy = 0;
+        c.weightx = 1;
+        form.add(txtEmail, c);
+
+        // Linha 2 — Senha
+        c.gridx = 0;
+        c.gridy = 1;
+        c.weightx = 0;
+        form.add(lblSenha, c);
+
+        c.gridx = 1;
+        c.gridy = 1;
+        c.weightx = 1;
+        form.add(txtSenha, c);
+
+        // Linha 3 — Botões lado a lado
+        JPanel painelBotoes = new JPanel(new GridLayout(1, 2, 10, 0));
+        painelBotoes.add(btnEntrar);
+        painelBotoes.add(btnRegistrar);
+
+        c.gridx = 0;
+        c.gridy = 2;
+        c.gridwidth = 2;
+        form.add(painelBotoes, c);
+
+        root.add(form, BorderLayout.CENTER);
+
+        // ============================
+        // Painel do botão "Encerrar"
+        // ============================
+        JPanel rodape = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
+        rodape.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
+        JButton btnEncerrar = new JButton("Encerrar Sistema");
+        rodape.add(btnEncerrar);
+
+        root.add(rodape, BorderLayout.SOUTH);
 
         // ============= EVENTO DE LOGIN =============
         btnEntrar.addActionListener(e -> {
@@ -78,8 +127,15 @@ public class TelaLogin extends JFrame {
 
         // ============= ENCERRAR SISTEMA =============
         btnEncerrar.addActionListener(e -> {
-            Sistema.salvarDados();
-            System.exit(0);
+            util.EncerrarSistema.encerrarAplicacao(TelaLogin.this);
+        });
+
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                util.EncerrarSistema.encerrarAplicacao(TelaLogin.this);
+            }
         });
     }
 }

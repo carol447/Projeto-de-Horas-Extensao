@@ -137,7 +137,6 @@ public class PAEG implements Serializable {
             }
         }
 
-
         Candidatura nova = new Candidatura(aluno, this);
         candidaturas.add(nova);
 
