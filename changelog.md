@@ -229,3 +229,38 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ---
 
+## [0.3.0] - 29-11-2025
+
+### Adicionado
+
+ - HDE-48 **MAIOR** Adicionado implementação dos casos de uso 6 ao 11
+
+### Alterado
+
+### Corrigido
+
+---
+
+## [0.3.1] - 30-11-2025
+
+### Adicionado
+
+ - HDE-52 **MAIOR** Adicionado implementação dos casos de uso 12 ao 16
+
+### Alterado
+
+### Corrigido
+
+---
+
+## [0.3.2] - 30-11-2025
+
+### Adicionado
+
+ - HDE-56 **MAIOR** Adicionado implementação dos casos de uso 17 ao 21
+
+### Alterado
+
+### Corrigido
+
+---

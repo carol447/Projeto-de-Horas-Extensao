@@ -5,7 +5,10 @@ import repository.*;
 import catalog.*;
 import java.util.ArrayList;
 import java.util.List;
+import model.Aluno;
+import model.Atividade;
 import model.Candidatura;
+import model.Notificacao;
 import model.PAEG;
 import model.Professor;
 import model.Projeto;
@@ -70,42 +73,65 @@ public class Sistema {
         catalogoCandidatura.setCandidaturas(repoCandidatura.carregar());
         catalogoNotificacao.setNotificacoes(repoNotificacao.carregar());
 
-        System.out.println("==== DEBUG CARREGAR DADOS ====");
-
-        System.out.println("Professores carregados: " + catalogoProfessor.getProfessores().size());
-        for (Professor pr : catalogoProfessor.getProfessores()) {
-            System.out.println(" - Prof catálogo: " + pr.getNome() + " CPF=" + pr.getCpf()
-                    + " hash=" + System.identityHashCode(pr));
-        }
-
-        System.out.println("Projetos carregados: " + catalogoProjeto.getProjetos().size());
-        for (Projeto p : catalogoProjeto.getProjetos()) {
-            System.out.println("Projeto: " + p.getNome());
-            for (Professor pr : p.getProfessores()) {
-                System.out.println(" - Prof do projeto: " + pr.getNome() + " CPF=" + pr.getCpf()
-                        + " hash=" + System.identityHashCode(pr));
-            }
-        }
         ajustarProfessoresDosProjetos();
 
+        for (Notificacao n : catalogoNotificacao.getNotificacoes()) {
+            String cpf = n.getDestinatario().getCpf();
+
+            // aluno real do catálogo
+            Aluno real = Sistema.catalogoAluno.encontrarAlunoPorCpf(cpf);
+
+            if (real != null) {
+                n.setDestinatario(real); // substitui aluno duplicado pelo aluno correto
+            }
+        }
+
         for (Candidatura c : catalogoCandidatura.getCandidaturas()) {
-            PAEG paeg = c.getPaeg();
-
-            // procurar o PAEG correto no catálogo
-            for (PAEG real : catalogoPAEG.getPaegs()) {
-
-                boolean mesmoPAEG
-                        = real.getNome().equals(paeg.getNome())
-                        && real.getAtividade().getNome().equals(paeg.getAtividade().getNome())
-                        && real.getAtividade().getProjeto().getNome().equals(paeg.getAtividade().getProjeto().getNome())
-                        && real.getAtividade().getProjeto().getCriador().getCpf().equals(paeg.getAtividade().getProjeto().getCriador().getCpf());
-
-                if (mesmoPAEG) {
-                    // colocar candidatura dentro do objeto REAL do PAEG
-                    real.getCandidaturas().add(c);
+            for (Aluno real : catalogoAluno.getAlunos()) {
+                if (real.getCpf().equals(c.getAluno().getCpf())) {
+                    // substitui o aluno fantasma pelo aluno REAL
+                    c.setAluno(real);
+                    break;
                 }
             }
         }
+
+        for (Candidatura c : catalogoCandidatura.getCandidaturas()) {
+            PAEG salvo = c.getPaeg();
+
+            for (PAEG real : catalogoPAEG.getPaegs()) {
+
+                boolean mesmo
+                        = real.getNome().equals(salvo.getNome())
+                        && real.getAtividade().getNome().equals(salvo.getAtividade().getNome())
+                        && real.getAtividade().getProjeto().getNome().equals(salvo.getAtividade().getProjeto().getNome())
+                        && real.getAtividade().getProjeto().getCriador().getCpf()
+                                .equals(salvo.getAtividade().getProjeto().getCriador().getCpf());
+
+                if (mesmo) {
+                    // substitui PAeg fantasma pelo REAL
+                    c.setPaeg(real);
+
+                    // garante que o PAEG REAL receba a candidatura
+                    if (!real.getCandidaturas().contains(c)) {
+                        real.getCandidaturas().add(c);
+                    }
+
+                    break;
+                }
+            }
+        }
+
+        if (catalogoPAEG.getPaegs().isEmpty()
+                && catalogoProjeto.getProjetos().isEmpty()
+                && catalogoAluno.getAlunos().isEmpty()) {
+
+            TesteIntegracao.CenariosPAEG.gerar();
+            salvarDados();
+        }
+
+        ajustarPAEGsDasAtividades();
+
     }
 
     public static void salvarDados() {
@@ -138,5 +164,37 @@ public class Sistema {
             p.setProfessores(novaLista);
         }
     }
+
+    private static void ajustarPAEGsDasAtividades() {
+
+    for (Atividade real : catalogoAtividade.getAtividades()) {
+        real.getPaegs().clear(); // ZERA antes de reconstruir
+    }
+
+    for (PAEG paeg : catalogoPAEG.getPaegs()) {
+        Atividade atividadeFantasma = paeg.getAtividade();
+
+        for (Atividade real : catalogoAtividade.getAtividades()) {
+
+            boolean mesmaAtividade
+                    = real.getNome().equalsIgnoreCase(atividadeFantasma.getNome())
+                    && real.getProjeto().getNome().equalsIgnoreCase(
+                            atividadeFantasma.getProjeto().getNome()
+                    )
+                    && real.getProjeto().getCriador().getCpf().equals(
+                            atividadeFantasma.getProjeto().getCriador().getCpf()
+                    );
+
+            if (mesmaAtividade) {
+                paeg.setAtividade(real); // substitui fantasma pelo real
+
+                if (!real.getPaegs().contains(paeg)) {
+                    real.getPaegs().add(paeg);
+                }
+            }
+        }
+    }
+}
+
 
 }

@@ -2,6 +2,7 @@ C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExten
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\controller\ControladorProjeto.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\view\TelaGerenciarProfessores.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\view\TelaAvaliarCandidaturas.java
+C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\view\TelaMeusPAEGs.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\view\TelaProjetoDetalhes.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\com\mycompany\horasextensao\Sistema.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\repository\RepositorioBase.java
@@ -14,6 +15,7 @@ C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExten
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\model\StatusCandidatura.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\view\TelaCadastrarProjeto.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\catalog\CatalogoProfessor.java
+C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\util\EncerrarSistema.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\model\Cursos.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\model\Usuario.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\view\TelaAtividadeDetalhes.java
@@ -30,6 +32,7 @@ C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExten
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\model\Professor.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\catalog\CatalogoCandidatura.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\controller\ControladorAluno.java
+C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\TesteIntegracao\CenariosPAEG.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\repository\RepositorioAtividade.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\view\TelaPAEGDetalhes.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\view\TelaListarCandidaturasPAEG.java
@@ -38,6 +41,7 @@ C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExten
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\catalog\CatalogoNotificacao.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\view\TelaCadastroEscolha.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\view\TelaListarPAEGsDisponiveis.java
+C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\view\TelaHorasDeExtensao.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\model\Candidatura.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\controller\ControladorCandidatura.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\repository\RepositorioAluno.java
@@ -51,6 +55,7 @@ C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExten
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\repository\RepositorioPAEG.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\view\TelaCadastroAluno.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\controller\ControladorPAEG.java
+C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\view\TelaNotificacoesAluno.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\catalog\CatalogoAtividade.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\view\TelaMinhasCandidaturas.java
 C:\Users\Vericoders\Desktop\extensao\Projeto-de-Horas-Extensao\Codigo\HorasExtensao\src\main\java\model\Aluno.java

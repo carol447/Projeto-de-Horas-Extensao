@@ -43,7 +43,7 @@ public class CatalogoAtividade {
     }
 
     public List<Atividade> getAtividades() {
-        return new ArrayList<>(atividades);
+        return atividades;
     }
 
     public List<Atividade> getAtividadesDoProjeto(Projeto projeto) {

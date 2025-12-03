@@ -36,7 +36,8 @@ public abstract class RepositorioBase<T> {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(arquivo))) {
             oos.writeObject(lista);
         } catch (IOException e) {
-            System.err.println("Erro ao salvar arquivo: " + arquivo.getName());
+            System.err.println("❌ ERRO GRAVE AO SALVAR: " + arquivo.getAbsolutePath());
+            e.printStackTrace();
         }
     }
 }

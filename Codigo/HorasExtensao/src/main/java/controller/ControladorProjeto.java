@@ -3,6 +3,7 @@ package controller;
 import java.util.List;
 import catalog.CatalogoProfessor;
 import catalog.CatalogoProjeto;
+import javax.swing.JOptionPane;
 import model.Cursos;
 import model.Projeto;
 import model.Professor;
@@ -28,6 +29,12 @@ public class ControladorProjeto {
         } catch (IllegalArgumentException e) {
             return false; // curso inválido
         }
+        
+        if (criador.getCurso() != cursoEnum) {
+        JOptionPane.showMessageDialog(null,
+            "Você só pode criar projetos do seu próprio curso: " + criador.getCurso());
+        return false;
+    }
 
         Projeto novo = new Projeto(nome, descricao, cursoEnum, criador);
         return catalogoProjeto.addProjeto(novo);

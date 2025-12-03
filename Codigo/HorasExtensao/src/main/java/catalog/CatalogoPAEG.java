@@ -49,7 +49,7 @@ public class CatalogoPAEG {
     }
 
     public List<PAEG> getPaegs() {
-        return new ArrayList<>(paegs);
+        return paegs;
     }
 
     public List<PAEG> getPAEGsDaAtividade(Atividade atividade) {
